@@ -1,13 +1,19 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "outDir": "./dist",
-    "rootDir": "./src"
+    "target": "es6", // Define o alvo da compilação para ES6
+    "module": "commonjs", // Usa o sistema de módulos CommonJS (compatível com Node.js)
+    "strict": true, // Ativa todas as verificações de tipo estritas
+    "esModuleInterop": true, // Melhora a interoperabilidade entre módulos CommonJS e ES Modules
+    "skipLibCheck": true, // Ignora a verificação de tipos de arquivos de declaração (.d.ts)
+    "forceConsistentCasingInFileNames": true, // Força consistência em nomes de arquivos com respeito a maiúsculas/minúsculas
+    "outDir": "./dist", // Define o diretório de saída para os arquivos compilados
+    "rootDir": "./src", // Define o diretório raiz para todos os arquivos de entrada
+    "declaration": true, // Gera arquivos de declaração (.d.ts)
+    "moduleResolution": "node", // Usa a resolução de módulos estilo Node.js
+    "isolatedModules": true, // Garante que cada arquivo seja tratado como um módulo isolado
+    "jsx": "react", // Suporte para JSX, define o alvo JSX como React
+    "noEmit": false, // Permite a emissão de arquivos de saída
+    "allowSyntheticDefaultImports": true // Permite importações de módulos com exportações default que não suportam essa sintaxe
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]

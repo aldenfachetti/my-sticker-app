@@ -6,7 +6,12 @@ import multer from "multer";
 const upload = multer({
   limits: { fileSize: 5 * 1024 * 1024 }, // 5 MB file size limit
   fileFilter: (request, uploadedFile, callback) => {
-    const allowedMimeTypes = ["image/gif", "video/avi", "video/muf"];
+    const allowedMimeTypes = [
+      "image/gif",
+      "video/avi",
+      "video/muf",
+      "video/mp4",
+    ];
 
     if (allowedMimeTypes.includes(uploadedFile.mimetype)) {
       // Valid file

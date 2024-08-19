@@ -19,12 +19,20 @@ interface MulterFile {
 export const processFile = async (file: MulterFile): Promise<string> => {
   const inputPath = file.path;
   const outputFilename = `${uuidv4()}.webp`;
-  const outputPath = path.join("/tmp", outputFilename);
+  const outputPath = path.join(
+    __dirname,
+    "../public/converted",
+    outputFilename
+  );
 
   try {
     if (file.mimetype === "image/gif") {
+      // Convert GIF to animated WebP
       await sharp(inputPath).webp({ quality: 80 }).toFile(outputPath);
-    } else {
+    } else if (
+      ["video/avi", "video/muf", "video/mp4"].includes(file.mimetype)
+    ) {
+      // Convert video to WebP using ffmpeg
       await new Promise<void>((resolve, reject) => {
         ffmpeg(inputPath)
           .outputOptions(["-vcodec libwebp", "-vf scale=512:512", "-loop 0"])
@@ -33,6 +41,8 @@ export const processFile = async (file: MulterFile): Promise<string> => {
           .on("end", () => resolve())
           .on("error", (err) => reject(err));
       });
+    } else {
+      throw new Error("Unsupported file type");
     }
 
     // Remove the input file after processing
