@@ -35,10 +35,11 @@ export const processFile = async (file: MulterFile): Promise<string> => {
       });
     }
 
+    // Remove the input file after processing
     await unlink(inputPath);
 
     return outputFilename;
   } catch (error) {
-    throw new Error("Erro ao converter o arquivo");
+    throw new Error("Error converting the file");
   }
 };
